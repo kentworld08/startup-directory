@@ -84,9 +84,8 @@ export default function StartupForm() {
     const text = await res.text(); // get raw response
     console.log("Response text:", text); // log what you actually got
 
-    let result;
     try {
-      result = JSON.parse(text);
+      JSON.parse(text);
       if (isSubmitted) {
         reset();
         setPitch("");
