@@ -25,7 +25,7 @@ export const Navbar = async () => {
               <form
                 action={async () => {
                   "use server";
-                  await signOut<true>();
+                  await signOut();
                 }}
               >
                 <button type="submit" className="cursor-pointer">
