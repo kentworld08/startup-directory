@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.20.2",
     "@hookform/resolvers": "^2.9.11",
     "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-menubar": "^1.1.15",
     "@radix-ui/react-slot": "^1.2.2",
     "@sanity/client": "^7.2.2",
     "@sanity/image-url": "^1.1.0",

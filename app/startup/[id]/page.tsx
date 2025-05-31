@@ -44,7 +44,7 @@ export default async function StartupPage({ params }: Props) {
 
   return (
     <>
-      <section className="purple-container min-h-[230px] pattern">
+      <section className="purple-container min-h-[230px] pattern p-5">
         <p className="tag">{created}</p>
         <h1 className="heading">{post.title}</h1>
         <p className="sub-heading max-w-5xl">{post.description}</p>

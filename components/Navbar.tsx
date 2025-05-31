@@ -3,6 +3,7 @@ import Link from "next/link";
 // import { auth, signIn, signOut } from "../app/auth";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
+import SideBar from "./SideBar";
 
 export const Navbar = async () => {
   // const session = await auth();
@@ -25,7 +26,7 @@ export const Navbar = async () => {
             />
           )}
         </Link>
-        <div className="flex items-center gap-8 ">
+        <div className=" hidden sm:flex sm:items-center sm:gap-8 ">
           <Link href={"/"}>Home</Link>
           <Link href={"/startup/create"}>
             <span>Create</span>
@@ -45,39 +46,7 @@ export const Navbar = async () => {
             <UserButton />
           </SignedIn>
         </div>
-        {/* <div className="flex items-center gap-5 ">
-          {session && session?.user ? (
-            <>
-              <Link href={"/startup/create"}>
-                <span>Create</span>
-              </Link>
-              <form
-                action={async () => {
-                  "use server";
-                  await signOut();
-                }}
-              >
-                <button type="submit" className="cursor-pointer">
-                  <span>Logout</span>
-                </button>
-              </form>
-              <Link href={`/user/${session?.user?.id}`}>
-                <span>{session?.user?.name}</span>
-              </Link>
-            </>
-          ) : (
-            <form
-              action={async () => {
-                "use server";
-                await signIn();
-              }}
-            >
-              <button type="submit" className="cursor-pointer">
-                <span>Login</span>
-              </button>
-            </form>
-          )}
-        </div> */}
+        <SideBar />
       </nav>
     </header>
   );
