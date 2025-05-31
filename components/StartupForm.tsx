@@ -71,31 +71,36 @@ export default function StartupForm() {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
 
-    const res = await fetch("/api/startup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    console.log("Raw response:", res);
-
-    const text = await res.text(); // get raw response
-    console.log("Response text:", text); // log what you actually got
-
     try {
-      JSON.parse(text);
-      if (isSubmitted) {
-        reset();
-        setPitch("");
+      const res = await fetch("/api/startup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // important for Clerk auth
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        // Show error from server
+        toast.error(result.error || "Server returned an error");
+        setLoading(false);
+        return;
       }
-    } catch (err) {
-      console.error("Failed to parse JSON:", err);
-      return toast.error("Server returned invalid response.");
+
+      // Success: reset form and navigate
+      reset();
+      setPitch("");
+      toast.success("Pitch submitted successfully!");
+      router.push("/");
+    } catch (error) {
+      // Catch fetch/network errors or JSON parse errors
+      console.error("Submission failed:", error);
+      toast.error("Failed to submit, please try again.");
     } finally {
       setLoading(false);
-      router.push("/");
     }
   };
 
